@@ -23,7 +23,8 @@ jobs:
       - name: Install system dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y libtool autoconf automake
+          sudo apt-get install -y libtool libtool-bin autoconf automake libltdl-dev
+          sudo apt-get install -y pkg-config zlib1g-dev
           pip install --upgrade pip
           pip install 'buildozer>=1.6.0' cython
 
