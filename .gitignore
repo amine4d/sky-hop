@@ -1,0 +1,8 @@
+*.pyc
+__pycache__/
+.buildozer/
+bin_wrapper/
+bin/*.apk
+.local/
+*.log
+.DS_Store
