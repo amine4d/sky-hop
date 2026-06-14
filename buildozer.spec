@@ -114,17 +114,17 @@ android.api = 33
 # (int) Minimum API your APK / AAB will support.
 android.minapi = 21
 
-# (str) Android NDK version to use (leave empty to use android.ndk_path)
-#android.ndk = 27
+# (str) Android NDK version to use
+android.ndk = 25b
 
 # (int) Android NDK API to use. This is the minimum API your app will support, it should usually match android.minapi.
 #android.ndk_api = 21
 
 # (str) Android NDK directory (if empty, it will be automatically downloaded.)
-android.ndk_path = /usr/local/lib/android/sdk/ndk/27.3.13750724
+#android.ndk_path =
 
 # (str) Android SDK directory (if empty, it will be automatically downloaded.)
-android.sdk_path = /usr/local/lib/android/sdk
+#android.sdk_path =
 
 # (str) ANT directory (if empty, it will be automatically downloaded.)
 #android.ant_path =
@@ -288,7 +288,7 @@ android.accept_sdk_license = True
 
 # (list) The Android archs to build for, choices: armeabi-v7a, arm64-v8a, x86, x86_64
 # In past, was `android.arch` as we weren't supporting builds for multiple archs at the same time.
-android.archs = arm64-v8a, armeabi-v7a
+android.archs = arm64-v8a
 
 # (int) overrides automatic versionCode computation (used in build.gradle)
 # this is not the same as app version and should only be edited if you know what you're doing
@@ -358,7 +358,7 @@ android.allow_backup = True
 # Setting this to false will pass --ignore-setup-py, true will pass --use-setup-py
 # NOTE: this is general setuptools integration, having pyproject.toml is enough, no need to generate
 # setup.py if you're using Poetry, but you need to add "toml" to source.include_exts.
-#p4a.setup_py = false
+p4a.setup_py = true
 
 # (str) extra command line arguments to pass when invoking pythonforandroid.toolchain
 p4a.extra_args = --verbose
