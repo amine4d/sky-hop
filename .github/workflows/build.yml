@@ -17,7 +17,7 @@ jobs:
           docker run --rm -v $PWD:/app -w /app \
             kivy/python-for-android:latest \
             bash -c "
-              python -m pythonforandroid.toolchain create \
+              python3 -m pythonforandroid.toolchain create \
                 --dist_name=skyhop \
                 --bootstrap=sdl2 \
                 --requirements=python3,kivy \
@@ -26,7 +26,7 @@ jobs:
                 --ndk-api=21 \
                 --ignore-setup-py \
                 --debug &&
-              python -m pythonforandroid.toolchain apk \
+              python3 -m pythonforandroid.toolchain apk \
                 --bootstrap=sdl2 \
                 --dist_name=skyhop \
                 --name='Sky Hop' \
