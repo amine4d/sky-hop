@@ -11,47 +11,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Build APK with p4a Docker
+      - name: Build APK with Buildozer Docker
         run: |
-          docker pull kivy/python-for-android:latest
-          docker run --rm -v $PWD:/app -w /app \
-            kivy/python-for-android:latest \
-            bash -c "
-              python3 -m pythonforandroid.toolchain create \
-                --dist_name=skyhop \
-                --bootstrap=sdl2 \
-                --requirements=python3,kivy \
-                --arch=arm64-v8a \
-                --copy-libs \
-                --ndk-api=21 \
-                --ignore-setup-py \
-                --debug &&
-              python3 -m pythonforandroid.toolchain apk \
-                --bootstrap=sdl2 \
-                --dist_name=skyhop \
-                --name='Sky Hop' \
-                --version=1.0.0 \
-                --package=com.skyhop.skyhop \
-                --minsdk=21 \
-                --ndk-api=21 \
-                --private=/app \
-                --permission=android.permission.INTERNET \
-                --orientation=portrait \
-                --enable-androidx \
-                --copy-libs \
-                --arch=arm64-v8a \
-                --ignore-setup-py \
-                --debug
-            "
-
-      - name: Find and copy APK
-        run: |
-          find / -name "Sky*.apk" -not -path "*/proc/*" -not -path "*/sys/*" -exec cp {} ./ \; 2>/dev/null
-          find / -name "skyhop*.apk" -not -path "*/proc/*" -not -path "*/sys/*" -exec cp {} ./ \; 2>/dev/null
-          ls -la *.apk 2>/dev/null || echo "No APK found in root"
+          docker run --rm \
+            --volume $PWD:/home/user/hostcwd \
+            kivy/buildozer:latest \
+            buildozer android debug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: sky-hop-apk
-          path: ./*.apk
+          path: bin/*.apk
