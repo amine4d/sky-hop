@@ -20,16 +20,19 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Install dependencies
+      - name: Install buildozer
         run: |
           pip install --upgrade pip
-          pip install 'buildozer>=1.6.0' cython pillow
+          pip install 'buildozer>=1.6.0' cython
 
       - name: Build with Buildozer
         run: |
           buildozer android debug
         env:
-          BUILD_REQUIRES_EXTRA: 1
+          ANDROIDSDK: /usr/local/lib/android/sdk
+          ANDROIDNDK: /usr/local/lib/android/sdk/ndk/27.3.13750724
+          ANDROIDAPI: 33
+          ANDROIDMINAPI: 21
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
